@@ -1,0 +1,26 @@
+.App {
+  text-align: center;
+}
+
+.marginTop30 {
+  margin-top: 30vh;
+}
+
+.width40 {
+  width: 40vw;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row !important;
+  align-items: center;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.navbar {
+  background-color: aquamarine;
+  height: 80px;
+}
