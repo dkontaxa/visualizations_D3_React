@@ -12,6 +12,8 @@
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.2.3",
     "d3": "^7.8.2",
+    "netlify-lambda": "^2.0.16",
+    "node-fetch": "^3.3.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
@@ -20,7 +22,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "netlify-lambda build .netlify/functions && react-scripts build",
+    "build:lambda": "netlify-lambda build functions/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

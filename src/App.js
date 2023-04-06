@@ -6,11 +6,19 @@ import "./App.css";
 
 const App = () => {
   const [data, setData] = useState([]);
+  const [result, setResult] = useState([]);
   const [formSubmitted, setFormSubmitted] = useState(true);
 
   var handleEditButtonClick = () => {
     setFormSubmitted(!formSubmitted);
   };
+
+  fetch(`/.netlify/functions/api`).then(
+    response => response.json()
+  ).then(jsonResponse => setResult(jsonResponse.data));
+  console.log(result);
+
+
 
   useEffect(() => {
     setData(lakePowellData.data);

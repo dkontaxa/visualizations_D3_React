@@ -43,7 +43,9 @@ const LineChart = ({ data, margin, width, height, style }) => {
 
   return (
     <div style={style}>
+      
       <select
+        placeholder="Select a Year"
         value={selectedYear}
         onChange={(e) => setSelectedYear(parseInt(e.target.value))}
       >
