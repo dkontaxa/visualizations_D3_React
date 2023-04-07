@@ -13,15 +13,16 @@ const App = () => {
     setFormSubmitted(!formSubmitted);
   };
 
-  fetch(`.netlify/functions/api.js`).then(
-    response => response.json()
-  ).then(jsonResponse => setResult(jsonResponse.data));
-  console.log(result);
+
 
 
 
   useEffect(() => {
     setData(lakePowellData.data);
+    fetch(`https://reactd3visualizations.netlify.app/.netlify/functions/api`).then(
+      response => response.json()
+    ).then(jsonResponse => setResult(jsonResponse.data));
+    console.log(result);
   }, []);
   console.log(data);
 
