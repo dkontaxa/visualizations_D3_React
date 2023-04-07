@@ -1,8 +1,8 @@
-const http = require('http');
+const https = require('https');
 
 exports.handler = function(event, context) {
   const url = 'https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json';
-  http.get(url, function(response) {
+  https.get(url, function(response) {
     let data = '';
     response.on('data', function(chunk) {
       data += chunk;
