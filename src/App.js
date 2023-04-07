@@ -14,13 +14,14 @@ const App = () => {
   };
 
 
- useEffect(() => {
+  useEffect(() => {
     setData(lakePowellData.data);
-    fetch(`/.netlify/functions/api`).then(
-      response => response.json()
-    ).then(jsonResponse => setResult(jsonResponse.data));
+    fetch('/.netlify/functions/api')
+      .then(jsonResponse => setResult(jsonResponse))
+      .catch(error => console.error(error));
   }, []);
   console.log(result);
+  
   
 
   return (
