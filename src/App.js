@@ -19,9 +19,9 @@ const App = () => {
     fetch(`/.netlify/functions/api`).then(
       response => response.json()
     ).then(jsonResponse => setResult(jsonResponse.data));
-    console.log(result);
   }, []);
-  console.log(data);
+  console.log(result);
+  
 
   return (
     <div className="App">
