@@ -14,7 +14,8 @@
     "bootstrap": "^5.2.3",
     "d3": "^7.8.2",
     "http-proxy-middleware": "^2.0.6",
-    "netlify-lambda": "^2.0.16",
+    "netlify-lambda": "^2.0.3",
+    "npm-run-all": "^4.1.5",
     "node-fetch": "^3.3.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
@@ -23,9 +24,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "api:serve": "netlify-lambda serve netlify/functions/",
     "start": "react-scripts start",
-    "build": "netlify-lambda build netlify/functions/ && react-scripts build",
+    "build": "run-p build:**",
+    "build:app": "react-scripts build",
+    "serve:lambda": "netlify-lambda serve functions/",
+    "build:lambda": "netlify-lambda build functions/",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "netlify dev"
