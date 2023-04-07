@@ -11,7 +11,7 @@ exports.handler = function(event, context) {
         console.log("success");
       return {
         statusCode: 200,
-        body: JSON.stringify(data)
+        body: JSON.stringify(response.data)
       };
     });
   }).on('error', function(error) {
