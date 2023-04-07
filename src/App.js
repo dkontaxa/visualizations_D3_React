@@ -14,12 +14,9 @@ const App = () => {
   };
 
 
-
-
-
-  useEffect(() => {
+ useEffect(() => {
     setData(lakePowellData.data);
-    fetch(`https://reactd3visualizations.netlify.app/.netlify/functions/api`).then(
+    fetch(`/.netlify/functions/api`).then(
       response => response.json()
     ).then(jsonResponse => setResult(jsonResponse.data));
     console.log(result);
