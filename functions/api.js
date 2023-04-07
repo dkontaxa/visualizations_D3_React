@@ -8,7 +8,7 @@ exports.handler = function(event, context) {
       data += chunk;
     });
     response.on('end', function() {
-      console.log(data);
+        console.log("success");
       return {
         statusCode: 200,
         body: JSON.stringify(data)
