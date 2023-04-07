@@ -10,10 +10,10 @@ exports.handler = function(event, context) {
     });
     response.on('end', function() {
         console.log("success");
-console.log(response.data);
+console.log(data);
       return {
         statusCode: 200,
-        body: JSON.stringify(response.data)
+        body: JSON.stringify(data)
       };
     });
   }).on('error', function(error) {
