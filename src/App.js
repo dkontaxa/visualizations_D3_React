@@ -13,7 +13,7 @@ const App = () => {
     setFormSubmitted(!formSubmitted);
   };
 
-  fetch(`/.netlify/functions/api`).then(
+  fetch(`.netlify/functions/api.js`).then(
     response => response.json()
   ).then(jsonResponse => setResult(jsonResponse.data));
   console.log(result);
