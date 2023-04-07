@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.2.3",
     "d3": "^7.8.2",
+    "http-proxy-middleware": "^2.0.6",
     "netlify-lambda": "^2.0.16",
     "node-fetch": "^3.3.1",
     "react": "^18.2.0",
@@ -26,7 +27,8 @@
     "start": "react-scripts start",
     "build": "netlify-lambda build .netlify/functions/ && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "netlify dev"
   },
   "eslintConfig": {
     "extends": [

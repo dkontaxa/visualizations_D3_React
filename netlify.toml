@@ -1,4 +1,5 @@
 [build]
   command = "npm run build"
-  functions = "build-lambda" # netlify-lambda gets build to this folder
+  functions = "netlify/functions" # netlify-lambda gets build to this folder
   publish = "build"  # create-react-app builds to this folder
+
