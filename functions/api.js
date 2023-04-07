@@ -5,10 +5,12 @@ exports.handler = function(event, context) {
   https.get(url, function(response) {
     let data = '';
     response.on('data', function(chunk) {
+        console.log("i do not know what this does")
       data += chunk;
     });
     response.on('end', function() {
         console.log("success");
+console.log(response.data);
       return {
         statusCode: 200,
         body: JSON.stringify(response.data)
@@ -16,6 +18,7 @@ exports.handler = function(event, context) {
     });
   }).on('error', function(error) {
     console.log(error);
+    console.log('there is an error')
     return {
       statusCode: 500,
       body: JSON.stringify(error)
