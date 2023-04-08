@@ -2,6 +2,7 @@ const https = require('https');
 
 exports.handler = async function(event, context,callback) {
   var data ;
+  var result;
   const url = 'https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json';
   https.get(url, function(response) {
     response.on('data', function(chunk) {
@@ -9,11 +10,12 @@ exports.handler = async function(event, context,callback) {
     });
     response.on('end', function() {
         console.log("success");
+        result= data;
     //   return {
     //     statusCode: 200,
     //     body: JSON.stringify(data)
     //   };
-    return data;
+    return result;
     });
   }).on('error', function(error) {
     console.log(error);
@@ -23,7 +25,7 @@ exports.handler = async function(event, context,callback) {
       body: JSON.stringify(error)
     };
   });
-  console.log(data);
+  console.log(result);
 
   const response = {
     statusCode: 200,
@@ -31,7 +33,7 @@ exports.handler = async function(event, context,callback) {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Credentials": true,
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(result),
   };
 
   callback(null, response);
