@@ -9,10 +9,11 @@ exports.handler = async function(event, context,callback) {
     });
     response.on('end', function() {
         console.log("success");
-      return {
-        statusCode: 200,
-        body: JSON.stringify(data)
-      };
+    //   return {
+    //     statusCode: 200,
+    //     body: JSON.stringify(data)
+    //   };
+    return data;
     });
   }).on('error', function(error) {
     console.log(error);
