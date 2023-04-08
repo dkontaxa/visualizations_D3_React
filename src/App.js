@@ -14,7 +14,9 @@ const App = () => {
   };
 
 
+
   useEffect(() => {
+    setData(lakePowellData.data);
     fetch('/.netlify/functions/api')
       .then(response => response.json())
       .then(jsonResponse => {
@@ -25,9 +27,8 @@ const App = () => {
         console.error(error);
       });
   }, []);
+  console.log(result);
 
-  
-  
 
   return (
     <div className="App">
