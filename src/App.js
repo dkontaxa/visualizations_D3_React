@@ -17,9 +17,7 @@ const App = () => {
 
   useEffect(() => {
     setData(lakePowellData.data);
-    fetch('/.netlify/functions/api')
-      .then(response => response.json())
-      .then(jsonResponse => {
+    fetch('/.netlify/functions/api').then(jsonResponse => {
         setResult(jsonResponse);
         console.log(jsonResponse);
       })

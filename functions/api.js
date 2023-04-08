@@ -1,16 +1,14 @@
 const https = require('https');
 
 exports.handler = async function(event, context,callback) {
-  var data = '';
+  var data ;
   const url = 'https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json';
   https.get(url, function(response) {
     response.on('data', function(chunk) {
-        console.log("i do not know what this does")
       data += chunk;
     });
     response.on('end', function() {
         console.log("success");
-console.log(data);
       return {
         statusCode: 200,
         body: JSON.stringify(data)
@@ -24,6 +22,8 @@ console.log(data);
       body: JSON.stringify(error)
     };
   });
+  console.log(data);
+
   const response = {
     statusCode: 200,
     headers: {
