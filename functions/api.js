@@ -1,41 +1,48 @@
 const https = require('https');
 
-exports.handler = async function(event, context,callback) {
-  var data ;
-  var result;
-  const url = 'https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json';
-  https.get(url, function(response) {
-    response.on('data', function(chunk) {
-      data += chunk;
-    });
-    response.on('end', function() {
-        console.log("success");
-        result=    {
+exports.handler = async function(event, context) {
+  try {
+    const url = 'https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json';
+    const response = await new Promise((resolve, reject) => {
+      https.get(url, function(res) {
+        let data = '';
+        res.on('data', function(chunk) {
+          data += chunk;
+        });
+        res.on('end', function() {
+          console.log("success");
+          const result = {
             statusCode: 200,
-            body: JSON.stringify(data)
+            body: JSON.stringify(JSON.parse(data))
           };
-    
-    return result;
+          resolve(result);
+        });
+      }).on('error', function(error) {
+        console.log(error);
+        const result = {
+          statusCode: 500,
+          body: JSON.stringify({ error: 'Something went wrong!' })
+        };
+        reject(result);
+      });
     });
-  }).on('error', function(error) {
+    return {
+      statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": true
+      },
+      body: response.body
+    };
+  } catch (error) {
     console.log(error);
-    console.log('there is an error')
     return {
       statusCode: 500,
-      body: JSON.stringify(error)
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": true
+      },
+      body: JSON.stringify({ error: 'Something went wrong!' })
     };
-  });
-  console.log(result);
-  console.log("uyay");
-
-  const response = {
-    statusCode: 200,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Credentials": true,
-    },
-    body: JSON.stringify(result),
-  };
-
-  callback(null, response);
+  }
 };
