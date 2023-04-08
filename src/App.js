@@ -19,6 +19,7 @@ const App = () => {
     setData(lakePowellData.data);
     fetch('/.netlify/functions/api').then(jsonResponse => {
         setResult(jsonResponse);
+        console.log(jsonResponse);
         console.log(jsonResponse.body);
         console.log(jsonResponse.json());
       })
