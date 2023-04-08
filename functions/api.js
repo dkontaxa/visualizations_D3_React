@@ -26,6 +26,7 @@ exports.handler = async function(event, context,callback) {
     };
   });
   console.log(result);
+  console.log("uyay");
 
   const response = {
     statusCode: 200,
