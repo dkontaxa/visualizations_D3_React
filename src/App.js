@@ -17,17 +17,17 @@ const App = () => {
 
   useEffect(() => {
     setData(lakePowellData.data);
-    fetch('/.netlify/functions/api').then(jsonResponse => {
+    fetch('/.netlify/functions/api')
+      .then(response => response.json())
+      .then(jsonResponse => {
         setResult(jsonResponse);
         console.log(jsonResponse);
-        console.log(jsonResponse.body);
-        console.log(jsonResponse.json());
       })
       .catch(error => {
         console.error(error);
       });
   }, []);
-  console.log(result);
+  
 
 
   return (
