@@ -27,7 +27,7 @@ const App = () => {
         console.error(error);
       });
   }, []);
-  
+  console.log(result);
 
 
   return (
