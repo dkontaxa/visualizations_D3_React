@@ -20,8 +20,7 @@ const App = () => {
     fetch('/.netlify/functions/api')
       .then(response => response.json())
       .then(jsonResponse => {
-        setResult(jsonResponse);
-        console.log(jsonResponse);
+        setResult(jsonResponse.vulnerabilities);
       })
       .catch(error => {
         console.error(error);
