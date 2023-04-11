@@ -20,7 +20,11 @@ const App = () => {
     fetch('/.netlify/functions/api')
       .then(response => response.json())
       .then(jsonResponse => {
-        setResult(jsonResponse.vulnerabilities);
+        const dataJson = vulnerabilities.map((vulnerability) => ({
+          date: vulnerability.dateAdded,
+          value: 1,
+        }));
+        setResult(dataJson);
       })
       .catch(error => {
         console.error(error);
@@ -48,7 +52,7 @@ const App = () => {
           timeAggregation="year"
           timeFormat="%Y"
           xAccessor={(d) => d.dueDate}
-          yAccessor={1}
+          yAccessor={(d) => d.value}
         />
       ) : (
         <LineChart
