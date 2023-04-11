@@ -41,12 +41,14 @@ const App = () => {
       </div>
       {formSubmitted === true ? (
         <AreaChart
-          data={data}
+          data={result}
           width={1000}
           height={300}
           margin={{ top: 20, right: 20, bottom: 50, left: 50 }}
           timeAggregation="year"
           timeFormat="%Y"
+          xAccessor={(d) => d.dueDate}
+          yAccessor={1}
         />
       ) : (
         <LineChart
