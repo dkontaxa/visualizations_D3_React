@@ -20,7 +20,7 @@ const App = () => {
     fetch('/.netlify/functions/api')
       .then(response => response.json())
       .then(jsonResponse => {
-        const dataJson = vulnerabilities.map((vulnerability) => ({
+        const dataJson = jsonResponse.vulnerabilities.map((vulnerability) => ({
           date: vulnerability.dateAdded,
           value: 1,
         }));
