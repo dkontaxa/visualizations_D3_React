@@ -19,8 +19,8 @@ const App = () => {
       .then((response) => response.json())
       .then((jsonResponse) => {
         const dataJson = jsonResponse.vulnerabilities.map((vulnerability) => ({
-          date: vulnerability.dateAdded,
-          value: 1,
+          x: vulnerability.dateAdded,
+          y: 1,
         }));
         setResult(dataJson);
       })
@@ -48,8 +48,8 @@ const App = () => {
           margin={{ top: 20, right: 20, bottom: 50, left: 50 }}
           timeAggregation="year"
           timeFormat="%Y"
-          xAccessor="date"
-          yAccessor="value"
+          xAccessor="x"
+          yAccessor="y"
         />
       ) : (
         <LineChart
