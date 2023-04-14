@@ -13,25 +13,22 @@ const App = () => {
     setFormSubmitted(!formSubmitted);
   };
 
-
-
   useEffect(() => {
     setData(lakePowellData.data);
-    fetch('/.netlify/functions/api')
-      .then(response => response.json())
-      .then(jsonResponse => {
+    fetch("/.netlify/functions/api")
+      .then((response) => response.json())
+      .then((jsonResponse) => {
         const dataJson = jsonResponse.vulnerabilities.map((vulnerability) => ({
           date: vulnerability.dateAdded,
           value: 1,
         }));
         setResult(dataJson);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }, []);
   console.log(result);
-
 
   return (
     <div className="App">
@@ -51,8 +48,8 @@ const App = () => {
           margin={{ top: 20, right: 20, bottom: 50, left: 50 }}
           timeAggregation="year"
           timeFormat="%Y"
-          xAccessor={(d) => d.date}
-          yAccessor={(d) => d.value}
+          xAccessor={0}
+          yAccessor={1}
         />
       ) : (
         <LineChart
