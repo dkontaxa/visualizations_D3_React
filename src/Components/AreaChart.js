@@ -64,6 +64,9 @@ const AreaChart = ({
       .x((d) => xScale(parseDate(d[xValue])))
       .y0(yScale(0))
       .y1((d) => yScale(d[yValue]));
+    console.log("data:", data);
+    console.log("xScale.domain:", xScale.domain());
+    console.log("yScale.domain:", yScale.domain());
 
     svg
       .select(".area")
@@ -71,7 +74,16 @@ const AreaChart = ({
       .attr("d", area)
       .attr("fill", "steelblue")
       .attr("opacity", 0.5);
-  }, [data, width, height, margin, timeAggregation, timeFormat, xValue, yValue]);
+  }, [
+    data,
+    width,
+    height,
+    margin,
+    timeAggregation,
+    timeFormat,
+    xValue,
+    yValue,
+  ]);
 
   return (
     <svg ref={svgRef} width={width} height={height}>
