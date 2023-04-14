@@ -48,8 +48,8 @@ const App = () => {
           margin={{ top: 20, right: 20, bottom: 50, left: 50 }}
           timeAggregation="year"
           timeFormat="%Y"
-          xAccessor={0}
-          yAccessor={1}
+          xAccessor="date"
+          yAccessor="value"
         />
       ) : (
         <LineChart
