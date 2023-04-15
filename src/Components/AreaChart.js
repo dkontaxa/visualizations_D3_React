@@ -40,8 +40,7 @@ const AreaChart = ({
           .range([margin.left, width - margin.right])
           .paddingInner(0.1)
           .paddingOuter(0.2);
-    console.log(formatDate);
-    console.log(xScale);
+
     const yScale = d3
       .scaleLinear()
       .domain([0, d3.max(data, (d) => d[yValue])])
@@ -65,6 +64,9 @@ const AreaChart = ({
       .x((d) => xScale(parseDate(d[xValue])))
       .y0(yScale(0))
       .y1((d) => yScale(d[yValue]));
+
+    console.log(xScale);
+    console.log(xAxis);
 
     svg
       .select(".area")
