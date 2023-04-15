@@ -23,12 +23,18 @@ const App = () => {
           y: 1,
         }));
         setResult(dataJson);
+        const sumYByYear = d3.rollup(
+          rawData,
+          (v) => d3.sum(v, (d) => d.y),
+          (d) => d.x.substring(0, 4)
+        );
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
   console.log(result);
+  var dataCISA = Array.from(sumYByYear, ([x, y]) => ({ x, y }));
 
   return (
     <div className="App">
@@ -43,7 +49,7 @@ const App = () => {
       {formSubmitted === true ? (
         result.length > 0 ? (
           <AreaChart
-            data={result}
+            data={dataCISA}
             width={1000}
             height={300}
             margin={{ top: 20, right: 20, bottom: 50, left: 50 }}
