@@ -48,7 +48,6 @@ const App = () => {
             height={300}
             margin={{ top: 20, right: 20, bottom: 50, left: 50 }}
             timeAggregation="year"
-            timeFormat="%Y"
             xValue="x"
             yValue="y"
           />
