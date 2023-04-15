@@ -10,13 +10,13 @@ const AreaChart = ({
   timeFormat = "%Y-%m-%d",
   xValue = "x",
   yValue = "y",
+  dateParser = (dateString) => d3.timeParse(timeFormat)(dateString),
 }) => {
   const svgRef = useRef();
 
   useEffect(() => {
     const svg = d3.select(svgRef.current);
 
-    const parseDate = d3.timeParse(timeFormat);
     const formatDate = d3.timeFormat(
       timeAggregation === "year" ? "%Y" : "%Y-%m"
     );
@@ -31,7 +31,7 @@ const AreaChart = ({
     const xScale = timeAggregator
       ? d3
           .scaleTime()
-          .domain(d3.extent(data, (d) => parseDate(d[xValue])))
+          .domain(d3.extent(data, (d) => dateParser(d[xValue])))
           .range([margin.left, width - margin.right])
           .nice(timeAggregator)
       : d3
@@ -61,7 +61,7 @@ const AreaChart = ({
 
     const area = d3
       .area()
-      .x((d) => xScale(parseDate(d[xValue])))
+      .x((d) => xScale(dateParser(d[xValue])))
       .y0(yScale(0))
       .y1((d) => yScale(d[yValue]));
 
@@ -71,10 +71,6 @@ const AreaChart = ({
       .attr("d", area)
       .attr("fill", "steelblue")
       .attr("opacity", 0.5);
-
-    console.log("data:", data);
-    console.log("xScale.domain:", xScale.domain());
-    console.log("yScale.domain:", yScale.domain());
   }, [
     data,
     width,
@@ -84,6 +80,7 @@ const AreaChart = ({
     timeFormat,
     xValue,
     yValue,
+    dateParser,
   ]);
 
   return (

@@ -19,8 +19,8 @@ const App = () => {
       .then((response) => response.json())
       .then((jsonResponse) => {
         const dataJson = jsonResponse.vulnerabilities.map((vulnerability) => ({
-          x: new Date(vulnerability.dateAdded).getTime(),
-          y: Number(1),
+          x: vulnerability.dateAdded,
+          y: 1,
         }));
         setResult(dataJson);
       })
