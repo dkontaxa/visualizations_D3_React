@@ -40,7 +40,6 @@ const AreaChart = ({
           .range([margin.left, width - margin.right])
           .paddingInner(0.1)
           .paddingOuter(0.2);
-    console.log(xAxis);
     console.log(formatDate);
     console.log(xScale);
     const yScale = d3
