@@ -40,7 +40,9 @@ const AreaChart = ({
           .range([margin.left, width - margin.right])
           .paddingInner(0.1)
           .paddingOuter(0.2);
-
+    console.log(xAxis);
+    console.log(formatDate);
+    console.log(xScale);
     const yScale = d3
       .scaleLinear()
       .domain([0, d3.max(data, (d) => d[yValue])])
