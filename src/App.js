@@ -8,7 +8,7 @@ const App = () => {
   const [data, setData] = useState([]);
   const [result, setResult] = useState([]);
   const [formSubmitted, setFormSubmitted] = useState(true);
-
+  var dataCISA = 1;
   var handleEditButtonClick = () => {
     setFormSubmitted(!formSubmitted);
   };
@@ -28,13 +28,13 @@ const App = () => {
           (v) => d3.sum(v, (d) => d.y),
           (d) => d.x.substring(0, 4)
         );
+        dataCISA = Array.from(sumYByYear, ([x, y]) => ({ x, y }));
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
   console.log(result);
-  var dataCISA = Array.from(sumYByYear, ([x, y]) => ({ x, y }));
 
   return (
     <div className="App">
