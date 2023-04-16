@@ -9,7 +9,6 @@ const App = () => {
   const [data, setData] = useState([]);
   const [result, setResult] = useState([]);
   const [formSubmitted, setFormSubmitted] = useState(true);
-  var dataCISA = 1;
   var handleEditButtonClick = () => {
     setFormSubmitted(!formSubmitted);
   };
@@ -23,13 +22,13 @@ const App = () => {
           x: vulnerability.dateAdded,
           y: 1,
         }));
-        setResult(dataJson);
         const sumYByYear = d3.rollup(
-          result,
+          dataJson,
           (v) => d3.sum(v, (d) => d.y),
           (d) => d.x.substring(0, 4)
         );
-        dataCISA = Array.from(sumYByYear, ([x, y]) => ({ x, y }));
+        var dataCISA = Array.from(sumYByYear, ([x, y]) => ({ x, y }));
+        setResult(dataCISA);
       })
       .catch((error) => {
         console.error(error);
@@ -50,7 +49,7 @@ const App = () => {
       {formSubmitted === true ? (
         result.length > 0 ? (
           <AreaChart
-            data={dataCISA}
+            data={result}
             width={1000}
             height={300}
             margin={{ top: 20, right: 20, bottom: 50, left: 50 }}
