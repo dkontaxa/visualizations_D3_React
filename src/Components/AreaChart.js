@@ -16,17 +16,7 @@ const AreaChart = ({
   useEffect(() => {
     const svg = d3.select(svgRef.current);
 
-    // This function allows the component to accept different date formats
-    const parseDate = d3.timeParse.multi([
-      "%Y-%m-%d",
-      "%Y/%m/%d",
-      "%Y%m%d",
-      "%Y-%m",
-      "%Y/%m",
-      "%Y%m",
-      "%Y",
-    ]);
-
+    const parseDate = d3.timeParse(timeFormat);
     const formatDate = d3.timeFormat(
       timeAggregation === "year" ? "%Y" : "%Y-%m"
     );
