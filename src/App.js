@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import lakePowellData from "../src/Data/LakePowellStorageVolume.json";
 import AreaChart from "../src/Components/AreaChart";
 import LineChart from "../src/Components/LineChart";
+import * as d3 from "d3";
 import "./App.css";
 
 const App = () => {
@@ -24,7 +25,7 @@ const App = () => {
         }));
         setResult(dataJson);
         const sumYByYear = d3.rollup(
-          rawData,
+          result,
           (v) => d3.sum(v, (d) => d.y),
           (d) => d.x.substring(0, 4)
         );
