@@ -1,94 +1,100 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState } from "react";
 import * as d3 from "d3";
 
-const AreaChart = ({
+const LineChart = ({
   data,
+  margin,
   width,
   height,
-  margin,
-  timeAggregation = "month",
-  timeFormat = "%Y-%m-%d",
-  xValue = "x",
-  yValue = "y",
+  style,
+  timeFormat,
+  timeAggregation,
+  xValue,
+  yValue,
 }) => {
-  const svgRef = useRef();
+  const [selectedYear, setSelectedYear] = useState(null);
 
-  useEffect(() => {
-    const svg = d3.select(svgRef.current);
+  // Get years from the fetch data
+  const years = Array.from(
+    new Set(
+      data.map((d) => {
+        const parsedDate = d3.timeParse(timeFormat)(d[xValue]);
+        return parsedDate ? parsedDate.getFullYear() : null;
+      })
+    )
+  );
 
-    const parseDate = d3.timeParse(timeFormat);
-    const formatDate = d3.timeFormat(
-      timeAggregation === "year" ? "%Y" : "%Y-%m"
-    );
+  // Filter data by selected year
+  const filteredData = selectedYear
+    ? data.filter((d) => {
+        const parsedDate = d3.timeParse(timeFormat)(d[xValue]);
+        return parsedDate ? parsedDate.getFullYear() === selectedYear : false;
+      })
+    : data;
 
-    const timeAggregator =
-      timeAggregation === "year"
-        ? d3.timeYear
-        : timeAggregation === "raw"
-        ? null
-        : d3.timeMonth;
+  // Define x and y scales
+  const xScale = d3
+    .scaleTime()
+    .domain([
+      d3.min(filteredData, (d) => d3.timeParse(timeFormat)(d[xValue])),
+      d3.max(filteredData, (d) => d3.timeParse(timeFormat)(d[xValue])),
+    ])
+    .range([margin.left, width - margin.right]);
+  const yScale = d3
+    .scaleLinear()
+    .domain([0, d3.max(filteredData, (d) => d[yValue])])
+    .range([height - margin.bottom, margin.top]);
 
-    const xScale = timeAggregator
-      ? d3
-          .scaleTime()
-          .domain(d3.extent(data, (d) => parseDate(d[xValue])))
-          .range([margin.left, width - margin.right])
-          .nice(timeAggregator)
-      : d3
-          .scaleBand()
-          .domain(data.map((d) => d[xValue]))
-          .range([margin.left, width - margin.right])
-          .paddingInner(0.1)
-          .paddingOuter(0.2);
-
-    const yScale = d3
-      .scaleLinear()
-      .domain([0, d3.max(data, (d) => d[yValue])])
-      .range([height - margin.bottom, margin.top]);
-
-    const xAxis = d3.axisBottom(xScale).tickFormat(formatDate);
-    const yAxis = d3.axisLeft(yScale);
-
-    svg
-      .select(".x-axis")
-      .attr("transform", `translate(0, ${height - margin.bottom})`)
-      .call(xAxis);
-
-    svg
-      .select(".y-axis")
-      .attr("transform", `translate(${margin.left}, 0)`)
-      .call(yAxis);
-
-    const area = d3
-      .area()
-      .x((d) => xScale(parseDate(d[xValue])))
-      .y0(yScale(0))
-      .y1((d) => yScale(d[yValue]));
-
-    svg
-      .select(".area")
-      .datum(data)
-      .attr("d", area)
-      .attr("fill", "steelblue")
-      .attr("opacity", 0.5);
-  }, [
-    data,
-    width,
-    height,
-    margin,
-    timeAggregation,
-    timeFormat,
-    xValue,
-    yValue,
-  ]);
+  // Define line function
+  const line = d3
+    .line()
+    .x((d) => xScale(d3.timeParse(timeFormat)(d[xValue])))
+    .y((d) => yScale(d[yValue]));
 
   return (
-    <svg ref={svgRef} width={width} height={height}>
-      <g className="x-axis" />
-      <g className="y-axis" />
-      <path className="area" />
-    </svg>
+    <div style={style}>
+      <select
+        placeholder="Select a Year"
+        value={selectedYear}
+        onChange={(e) => setSelectedYear(parseInt(e.target.value))}
+      >
+        <option value={null}>All Years</option>
+        {years.map((year) => (
+          <option key={year} value={year}>
+            {year}
+          </option>
+        ))}
+      </select>
+      <svg width={width} height={height}>
+        <g transform={`translate(${margin.left},${margin.top})`}>
+          <path
+            d={line(filteredData)}
+            fill="none"
+            stroke="black"
+            strokeWidth="2"
+          />
+          <g transform={`translate(0,${height - margin.bottom})`}>
+            <g
+              ref={(node) => {
+                const axis = d3
+                  .axisBottom(xScale)
+                  .tickFormat(d3.timeFormat(timeAggregation));
+                d3.select(node).call(axis);
+              }}
+            />
+          </g>
+          <g transform={`translate(${margin.left},0)`}>
+            <g
+              ref={(node) => {
+                const axis = d3.axisLeft(yScale);
+                d3.select(node).call(axis);
+              }}
+            />
+          </g>
+        </g>
+      </svg>
+    </div>
   );
 };
 
-export default AreaChart;
+export default LineChart;
