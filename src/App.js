@@ -37,6 +37,7 @@ const App = () => {
       });
   }, []);
   console.log(result);
+  console.log(data);
 
   return (
     <div className="App">
@@ -52,8 +53,8 @@ const App = () => {
         result.length > 0 ? (
           <AreaChart
             data={result}
-            width={1000}
-            height={300}
+            width={500}
+            height={200}
             margin={{ top: 20, right: 20, bottom: 50, left: 50 }}
             timeFormat="%Y"
             timeAggregation="year"
