@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import lakePowellData from "../src/Data/LakePowellStorageVolume.json";
 import AreaChart from "../src/Components/AreaChart";
 import LineChart from "../src/Components/LineChart";
 import * as d3 from "d3";
 import "./App.css";
 
 const App = () => {
-  const [data, setData] = useState([]);
   const [result, setResult] = useState([]);
   const [formSubmitted, setFormSubmitted] = useState(true);
   var handleEditButtonClick = () => {
@@ -14,7 +12,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    setData(lakePowellData.data);
     fetch("/.netlify/functions/api")
       .then((response) => response.json())
       .then((jsonResponse) => {
@@ -37,7 +34,6 @@ const App = () => {
       });
   }, []);
   console.log(result);
-  console.log(data);
 
   return (
     <div className="App">
