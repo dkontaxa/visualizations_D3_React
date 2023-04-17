@@ -25,7 +25,7 @@ const App = () => {
         const sumYByYear = d3.rollup(
           dataJson,
           (v) => d3.sum(v, (d) => d.y),
-          (d) => d.x
+          (d) => d.x.substring(0, 4)
         );
         var dataCISA = Array.from(sumYByYear, ([x, y]) => ({ x, y }));
         setResult(dataCISA);
