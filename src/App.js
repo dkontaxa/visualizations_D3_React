@@ -19,13 +19,13 @@ const App = () => {
       .then((response) => response.json())
       .then((jsonResponse) => {
         const dataJson = jsonResponse.vulnerabilities.map((vulnerability) => ({
-          x: vulnerability.dateAdded,
+          x: vulnerability.cveID.substr(4, 4),
           y: 1,
         }));
         const sumYByYear = d3.rollup(
           dataJson,
           (v) => d3.sum(v, (d) => d.y),
-          (d) => d.x.substring(0, 4)
+          (d) => d.x
         );
         var dataCISA = Array.from(sumYByYear, ([x, y]) => ({ x, y }));
         setResult(dataCISA);
