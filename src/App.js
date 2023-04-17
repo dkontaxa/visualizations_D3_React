@@ -66,10 +66,14 @@ const App = () => {
         )
       ) : (
         <LineChart
-          data={data}
+          data={result}
           width={1000}
           height={300}
           margin={{ top: 20, right: 20, bottom: 50, left: 50 }}
+          timeFormat="%m"
+          timeAggregation="%m"
+          xValue="x"
+          yValue="y"
         />
       )}
     </div>
