@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import AreaChart from "../src/Components/AreaChart";
+import LineChart from "../src/Components/LineChart";
 import * as d3 from "d3";
 import "./App.css";
 import OutlinedCard from "./Components/Card";
 
-const App = () => {
+const NVD = () => {
   const [result, setResult] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [formSubmitted, setFormSubmitted] = useState(true);
 
   useEffect(() => {
     fetch("/.netlify/functions/api")
@@ -25,7 +26,6 @@ const App = () => {
         // sort dataCISA by year in ascending order
         dataCISA.sort((a, b) => a.x - b.x);
         setResult(dataCISA);
-        setLoading(false);
       })
       .catch((error) => {
         console.error(error);
@@ -37,22 +37,35 @@ const App = () => {
     <div className="App">
       <div className="flexRow navbar">
         <OutlinedCard
-          title="CISA "
+          title=" "
           subtitle={`Number of vulnerabilities: ${result.length}`}
           description="well meaning and kindly."
           buttonText="Learn More"
         />{" "}
       </div>
-      {loading ? (
-        <p>Loading...</p>
+      {formSubmitted === true ? (
+        result.length > 0 ? (
+          <AreaChart
+            data={result}
+            width={500}
+            height={200}
+            margin={{ top: 20, right: 20, bottom: 50, left: 50 }}
+            timeFormat="%Y"
+            timeAggregation="year"
+            xValue="x"
+            yValue="y"
+          />
+        ) : (
+          <p>Loading...</p>
+        )
       ) : (
-        <AreaChart
+        <LineChart
           data={result}
-          width={500}
-          height={200}
+          width={1000}
+          height={300}
           margin={{ top: 20, right: 20, bottom: 50, left: 50 }}
-          timeFormat="%Y"
-          timeAggregation="year"
+          timeFormat="%m"
+          timeAggregation="%m"
           xValue="x"
           yValue="y"
         />
@@ -61,4 +74,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default NVD;
