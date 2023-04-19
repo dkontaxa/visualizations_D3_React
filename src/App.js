@@ -3,6 +3,7 @@ import AreaChart from "../src/Components/AreaChart";
 import LineChart from "../src/Components/LineChart";
 import * as d3 from "d3";
 import "./App.css";
+import OutlinedCard from "./Components/Card";
 
 const App = () => {
   const [result, setResult] = useState([]);
@@ -38,12 +39,12 @@ const App = () => {
   return (
     <div className="App">
       <div className="flexRow navbar">
-        <div className="width40 pointer" onClick={handleEditButtonClick}>
-          Storage Volume by Year
-        </div>
-        <div className="width40 pointer" onClick={handleEditButtonClick}>
-          Storage Volume all time
-        </div>
+        <OutlinedCard
+          title="CISA "
+          subtitle={`Number of vulnerabilities: ${result.length}`}
+          description="well meaning and kindly."
+          buttonText="Learn More"
+        />{" "}
       </div>
       {formSubmitted === true ? (
         result.length > 0 ? (
