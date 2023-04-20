@@ -22,7 +22,7 @@ exports.handler = async function (event, context) {
             console.log("success");
             const result = {
               statusCode: 200,
-              body: JSON.stringify(JSON.parse(data.totalResults)),
+              body: JSON.stringify(JSON.parse(data.totalResults[0])),
             };
             resolve(result);
           });
