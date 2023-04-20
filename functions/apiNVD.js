@@ -8,6 +8,7 @@ exports.handler = async function (event, context) {
       path: "/rest/json/cves/2.0",
       headers: {
         api_key: "f26e3424-ad7d-4ed3-bd35-e97e9e6593ad",
+        "Accept-Encoding": "identity",
       },
       maxRedirects: 20,
     };
@@ -20,7 +21,11 @@ exports.handler = async function (event, context) {
           });
           res.on("end", function () {
             console.log("success");
-            console.log(JSON.parse(data).totalResults);
+            var parsedData = JSON.parse(data).totalResults;
+            console.log(parsedData);
+            console.log(data.totalResults);
+            console.log(data);
+
             const result = {
               statusCode: 200,
               body: JSON.stringify({
