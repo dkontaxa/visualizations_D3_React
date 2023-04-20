@@ -20,9 +20,11 @@ exports.handler = async function (event, context) {
           });
           res.on("end", function () {
             console.log("success");
+            console.log(data);
+            console.log(data.totalResults);
             const result = {
               statusCode: 200,
-              body: JSON.stringify(JSON.parse(data.totalResults[0])),
+              body: JSON.stringify(JSON.parse(data)),
             };
             resolve(result);
           });
