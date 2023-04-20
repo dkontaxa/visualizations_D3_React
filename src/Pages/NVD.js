@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AreaChart from "../src/Components/AreaChart";
-import * as d3 from "d3";
 import "./App.css";
-import OutlinedCard from "./Components/Card";
+import OutlinedCard from "../Components/Card";
 
 const NVD = () => {
   const [result, setResult] = useState([]);
@@ -23,8 +22,8 @@ const NVD = () => {
     <div className="App">
       <div className="flexRow navbar">
         <OutlinedCard
-          title=" "
-          subtitle={`Number of vulnerabilities: ${result.length}`}
+          title="NVD "
+          subtitle={`Number of vulnerabilities: ${result}`}
           description="well meaning and kindly."
           buttonText="Learn More"
         />

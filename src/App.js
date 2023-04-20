@@ -6,6 +6,7 @@ import OutlinedCard from "./Components/Card";
 
 const App = () => {
   const [result, setResult] = useState([]);
+  const [dataNVD, setDataNVD] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -33,15 +34,33 @@ const App = () => {
   }, []);
   console.log(result);
 
+  useEffect(() => {
+    fetch("/.netlify/functions/apiNVD")
+      .then((response) => response.json())
+      .then((jsonResponse) => {
+        setDataNVD(jsonResponse);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  console.log(dataNVD);
+
   return (
     <div className="App">
       <div className="flexRow navbar">
         <OutlinedCard
           title="CISA "
-          subtitle={`Number of vulnerabilities: ${result.length}`}
-          description="well meaning and kindly."
+          description="Number of vulnerabilities:"
+          subtitle={` ${result.length}`}
           buttonText="Learn More"
-        />{" "}
+        />
+        <OutlinedCard
+          title="NVD "
+          description="Number of vulnerabilities:"
+          subtitle={` ${dataNVD}`}
+          buttonText="Learn More"
+        />
       </div>
       {loading ? (
         <p>Loading...</p>
