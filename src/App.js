@@ -58,7 +58,7 @@ const App = () => {
         <OutlinedCard
           title="NVD "
           description="Number of vulnerabilities:"
-          subtitle={` ${dataNVD.totalResults[0]}`}
+          subtitle={` ${dataNVD.totalResults}`}
           buttonText="Learn More"
         />
       </div>
