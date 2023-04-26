@@ -45,6 +45,8 @@ const App = () => {
       });
   }, []);
   console.log(dataNVD);
+  console.log(dataNVD.totalResults);
+  console.log(dataNVD.totalResults[0]);
 
   return (
     <div className="App">
