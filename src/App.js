@@ -52,7 +52,7 @@ const App = () => {
         <OutlinedCard
           title="CISA "
           description="Number of vulnerabilities:"
-          subtitle={` ${result.length}`}
+          subtitle={` ${result}`}
           buttonText="Learn More"
         />
         <OutlinedCard
