@@ -5,7 +5,7 @@ exports.handler = async function (event, context) {
     const options = {
       method: "GET",
       hostname: "services.nvd.nist.gov",
-      path: "/rest/json/cves/2.0",
+      path: "/rest/json/cves/2.0/?resultsPerPage=20&startIndex=0",
       headers: {
         api_key: "f26e3424-ad7d-4ed3-bd35-e97e9e6593ad",
         "Accept-Encoding": "identity",
