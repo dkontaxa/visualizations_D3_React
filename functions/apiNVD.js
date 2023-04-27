@@ -22,9 +22,6 @@ exports.handler = async function (event, context) {
           res.on("end", function () {
             console.log("success");
             var parsedData = JSON.parse(data).totalResults;
-            console.log(parsedData);
-            console.log(data.totalResults);
-            console.log(data);
 
             const result = {
               statusCode: 200,
