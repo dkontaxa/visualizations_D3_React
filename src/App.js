@@ -44,8 +44,6 @@ const App = () => {
         console.error(error);
       });
   }, []);
-  console.log(dataNVD);
-  console.log(dataNVD.totalResults);
 
   return (
     <div className="App">
