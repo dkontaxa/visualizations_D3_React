@@ -51,13 +51,15 @@ const App = () => {
         <OutlinedCard
           title="CISA "
           description="Number of vulnerabilities:"
-          subtitle={` ${result.length}`}
+          subtitle={result.length ? ` ${result.length}` : "loading..."}
           buttonText="Learn More"
         />
         <OutlinedCard
           title="NVD "
           description="Number of vulnerabilities:"
-          subtitle={` ${dataNVD.totalResults}`}
+          subtitle={
+            dataNVD.totalResults ? ` ${dataNVD.totalResults}` : "loading..."
+          }
           buttonText="Learn More"
         />
       </div>
