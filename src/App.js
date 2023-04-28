@@ -16,7 +16,6 @@ const App = () => {
       .then((jsonResponse) => {
         console.log(jsonResponse);
         setDataCISATotal(jsonResponse.length);
-        console.log(dataCISATotal);
         const dataJson = jsonResponse.vulnerabilities.map((vulnerability) => ({
           x: vulnerability.cveID.substr(4, 4),
           y: 1,
