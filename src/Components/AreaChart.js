@@ -65,9 +65,6 @@ const AreaChart = ({
       .y0(yScale(0))
       .y1((d) => yScale(d[yValue]));
 
-    console.log(xScale);
-    console.log(xAxis);
-
     svg
       .select(".area")
       .datum(data)

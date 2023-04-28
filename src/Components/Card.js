@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 export default function OutlinedCard(props) {
-  const { title, subtitle, description, buttonText } = props;
+  const { title, subtitle, subtitle2, description, buttonText } = props;
   const card = (
     <React.Fragment>
       <CardContent>
@@ -18,7 +18,7 @@ export default function OutlinedCard(props) {
           {subtitle}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          adjective
+          {subtitle2}
         </Typography>
         <Typography variant="body2">{description}</Typography>
       </CardContent>

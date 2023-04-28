@@ -6,13 +6,15 @@ import OutlinedCard from "./Components/Card";
 
 const App = () => {
   const [result, setResult] = useState([]);
-  const [dataNVD, setDataNVD] = useState([]);
+  const [dataNVDTotal, setDataNVDTotal] = useState([]);
+  const [dataCISATotal, setDataCISATotal] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/.netlify/functions/api")
       .then((response) => response.json())
       .then((jsonResponse) => {
+        setDataCISATotal(jsonResponse.length);
         const dataJson = jsonResponse.vulnerabilities.map((vulnerability) => ({
           x: vulnerability.cveID.substr(4, 4),
           y: 1,
@@ -38,7 +40,7 @@ const App = () => {
     fetch("/.netlify/functions/apiNVD")
       .then((response) => response.json())
       .then((jsonResponse) => {
-        setDataNVD(jsonResponse);
+        setDataNVDTotal(jsonResponse);
       })
       .catch((error) => {
         console.error(error);
@@ -51,15 +53,19 @@ const App = () => {
         <OutlinedCard
           title="CISA "
           description="Number of vulnerabilities:"
-          subtitle={result.length ? ` ${result.length}` : "loading..."}
+          subtitle={dataCISATotal ? ` ${dataCISATotal}` : "loading..."}
+          subtitle2="vulnerabilities"
           buttonText="Learn More"
         />
         <OutlinedCard
           title="NVD "
           description="Number of vulnerabilities:"
           subtitle={
-            dataNVD.totalResults ? ` ${dataNVD.totalResults}` : "loading..."
+            dataNVDTotal.totalResults
+              ? ` ${dataNVDTotal.totalResults}`
+              : "loading..."
           }
+          subtitle2="vulnerabilities"
           buttonText="Learn More"
         />
       </div>
