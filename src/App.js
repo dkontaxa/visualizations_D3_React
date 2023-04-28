@@ -14,7 +14,9 @@ const App = () => {
     fetch("/.netlify/functions/api")
       .then((response) => response.json())
       .then((jsonResponse) => {
+        console.log(jsonResponse);
         setDataCISATotal(jsonResponse.length);
+        console.log(dataCISATotal);
         const dataJson = jsonResponse.vulnerabilities.map((vulnerability) => ({
           x: vulnerability.cveID.substr(4, 4),
           y: 1,
@@ -35,6 +37,7 @@ const App = () => {
       });
   }, []);
   console.log(result);
+  console.log(dataCISATotal);
 
   useEffect(() => {
     fetch("/.netlify/functions/apiNVD")
