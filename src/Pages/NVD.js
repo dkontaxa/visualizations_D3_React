@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import AreaChart from "../src/Components/AreaChart";
+// import AreaChart from "../src/Components/AreaChart";
 import "./App.css";
-import OutlinedCard from "../Components/Card";
 
-const NVD = () => {
+const NVD = ({ loading, dataNVDTotal }) => {
   const [result, setResult] = useState([]);
 
   useEffect(() => {
@@ -20,24 +19,7 @@ const NVD = () => {
 
   return (
     <div className="App">
-      <div className="flexRow navbar">
-        <OutlinedCard
-          title="NVD "
-          subtitle={`Number of vulnerabilities: ${result}`}
-          description="well meaning and kindly."
-          buttonText="Learn More"
-        />
-      </div>
-      <AreaChart
-        data={result}
-        width={500}
-        height={200}
-        margin={{ top: 20, right: 20, bottom: 50, left: 50 }}
-        timeFormat="%Y"
-        timeAggregation="year"
-        xValue="x"
-        yValue="y"
-      />
+      <h1>This is NVD page</h1>
     </div>
   );
 };
