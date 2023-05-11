@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 // import AreaChart from "../src/Components/AreaChart";
-import "./App.css";
 
 const NVD = () => {
-  const [result, setResult] = useState([]);
+  // const [result, setResult] = useState([]);
 
   // useEffect(() => {
   //   fetch("/.netlify/functions/apiNVD")
