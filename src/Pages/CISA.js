@@ -1,6 +1,5 @@
 import React from "react";
-import AreaChart from "../src/Components/AreaChart";
-
+import AreaChart from "../Components/AreaChart";
 const CISA = ({ loading, result }) => {
   return (
     <div className="App">

@@ -1,5 +1,4 @@
 import React from "react";
-// import AreaChart from "../src/Components/AreaChart";
 
 const NVD = () => {
   // const [result, setResult] = useState([]);
