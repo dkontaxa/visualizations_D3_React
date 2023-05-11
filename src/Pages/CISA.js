@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import AreaChart from "../src/Components/AreaChart";
-import "./App.css";
 
 const CISA = ({ loading, result }) => {
   return (
