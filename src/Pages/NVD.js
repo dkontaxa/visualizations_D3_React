@@ -16,7 +16,7 @@ const NVD = () => {
   // console.log(result);
 
   return (
-    <div className="App">
+    <div>
       <h1>This is NVD page</h1>
     </div>
   );

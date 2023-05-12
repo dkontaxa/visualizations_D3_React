@@ -6,7 +6,6 @@ import Navbar from "./Components/Navbar";
 const App = () => {
   return (
     <div className="App">
-      <p1>Test</p1>
       <Navbar />
       <AppRoutes />
     </div>

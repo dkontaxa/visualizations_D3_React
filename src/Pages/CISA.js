@@ -2,7 +2,8 @@ import React from "react";
 import AreaChart from "../Components/AreaChart";
 const CISA = ({ loading, result }) => {
   return (
-    <div className="App">
+    <div>
+      <h2>CISA component</h2>
       {loading ? (
         <p>Loading...</p>
       ) : (

@@ -1,41 +1,10 @@
 import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
-import * as d3 from "d3";
 import OutlinedCard from "./Card";
-import CISA from "../Pages/CISA";
+import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
-  const [result, setResult] = useState([]);
+const Navbar = ({ dataCISATotal }) => {
   const [dataNVDTotal, setDataNVDTotal] = useState([]);
-  const [dataCISATotal, setDataCISATotal] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("/.netlify/functions/api")
-      .then((response) => response.json())
-      .then((jsonResponse) => {
-        console.log(jsonResponse);
-        setDataCISATotal(jsonResponse.count);
-        const dataJson = jsonResponse.vulnerabilities.map((vulnerability) => ({
-          x: vulnerability.cveID.substr(4, 4),
-          y: 1,
-        }));
-        const sumYByYear = d3.rollup(
-          dataJson,
-          (v) => d3.sum(v, (d) => d.y),
-          (d) => d.x
-        );
-        var dataCISA = Array.from(sumYByYear, ([x, y]) => ({ x, y }));
-        // sort dataCISA by year in ascending order
-        dataCISA.sort((a, b) => a.x - b.x);
-        setResult(dataCISA);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-  console.log(result);
 
   useEffect(() => {
     fetch("/.netlify/functions/apiNVD")
@@ -49,8 +18,8 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div>
-      <div className="flexRow navbar">
+    <div className="flexRow navbar">
+      <NavLink to="/">
         <OutlinedCard
           title="CISA "
           description="Number of vulnerabilities:"
@@ -58,6 +27,8 @@ const Navbar = () => {
           subtitle2="vulnerabilities"
           buttonText="Learn More"
         />
+      </NavLink>
+      <NavLink to="NVD">
         <OutlinedCard
           title="NVD "
           description="Number of vulnerabilities:"
@@ -69,8 +40,7 @@ const Navbar = () => {
           subtitle2="vulnerabilities"
           buttonText="Learn More"
         />
-        <CISA result={result} loading={loading} />
-      </div>
+      </NavLink>
     </div>
   );
 };
