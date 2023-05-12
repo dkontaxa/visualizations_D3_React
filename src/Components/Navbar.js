@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import * as d3 from "d3";
 import OutlinedCard from "./Card";
 import CISA from "../Pages/CISA";
@@ -51,28 +51,24 @@ const Navbar = () => {
   return (
     <div>
       <div className="flexRow navbar">
-        <Link to="/">
-          <OutlinedCard
-            title="CISA "
-            description="Number of vulnerabilities:"
-            subtitle={dataCISATotal ? ` ${dataCISATotal}` : "loading..."}
-            subtitle2="vulnerabilities"
-            buttonText="Learn More"
-          />
-        </Link>
-        <Link to="/NVD">
-          <OutlinedCard
-            title="NVD "
-            description="Number of vulnerabilities:"
-            subtitle={
-              dataNVDTotal.totalResults
-                ? ` ${dataNVDTotal.totalResults}`
-                : "loading..."
-            }
-            subtitle2="vulnerabilities"
-            buttonText="Learn More"
-          />
-        </Link>
+        <OutlinedCard
+          title="CISA "
+          description="Number of vulnerabilities:"
+          subtitle={dataCISATotal ? ` ${dataCISATotal}` : "loading..."}
+          subtitle2="vulnerabilities"
+          buttonText="Learn More"
+        />
+        <OutlinedCard
+          title="NVD "
+          description="Number of vulnerabilities:"
+          subtitle={
+            dataNVDTotal.totalResults
+              ? ` ${dataNVDTotal.totalResults}`
+              : "loading..."
+          }
+          subtitle2="vulnerabilities"
+          buttonText="Learn More"
+        />
         <CISA result={result} loading={loading} />
       </div>
     </div>
