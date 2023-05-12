@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "./Components/Navbar";
 import { Router, Routes } from "react-router-dom";
 
-const Routes = () => {
+const AppRoutes = () => {
   return (
     <Router>
       <Navbar />
@@ -14,4 +14,4 @@ const Routes = () => {
   );
 };
 
-export default Routes;
+export default AppRoutes;

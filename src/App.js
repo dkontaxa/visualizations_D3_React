@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
-import AreaChart from "../src/Components/AreaChart";
+import React from "react";
 import "./App.css";
-import Routes from "./Routes";
+import AppRoutes from "./Routes";
 import Navbar from "./Components/Navbar";
 
 const App = () => {
   return (
     <div className="App">
       <Navbar />
-      <Routes />
+      <AppRoutes />
     </div>
   );
 };
