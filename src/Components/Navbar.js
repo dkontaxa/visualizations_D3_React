@@ -49,30 +49,32 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="flexRow navbar">
-      <Link to="/">
-        <OutlinedCard
-          title="CISA "
-          description="Number of vulnerabilities:"
-          subtitle={dataCISATotal ? ` ${dataCISATotal}` : "loading..."}
-          subtitle2="vulnerabilities"
-          buttonText="Learn More"
-        />
-      </Link>
-      <Link to="/NVD">
-        <OutlinedCard
-          title="NVD "
-          description="Number of vulnerabilities:"
-          subtitle={
-            dataNVDTotal.totalResults
-              ? ` ${dataNVDTotal.totalResults}`
-              : "loading..."
-          }
-          subtitle2="vulnerabilities"
-          buttonText="Learn More"
-        />
-      </Link>
-      <CISA result={result} loading={loading} />
+    <div>
+      <div className="flexRow navbar">
+        <Link to="/">
+          <OutlinedCard
+            title="CISA "
+            description="Number of vulnerabilities:"
+            subtitle={dataCISATotal ? ` ${dataCISATotal}` : "loading..."}
+            subtitle2="vulnerabilities"
+            buttonText="Learn More"
+          />
+        </Link>
+        <Link to="/NVD">
+          <OutlinedCard
+            title="NVD "
+            description="Number of vulnerabilities:"
+            subtitle={
+              dataNVDTotal.totalResults
+                ? ` ${dataNVDTotal.totalResults}`
+                : "loading..."
+            }
+            subtitle2="vulnerabilities"
+            buttonText="Learn More"
+          />
+        </Link>
+        <CISA result={result} loading={loading} />
+      </div>
     </div>
   );
 };
