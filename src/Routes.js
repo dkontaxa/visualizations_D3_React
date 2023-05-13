@@ -31,7 +31,7 @@ const AppRoutes = ({ setDataCISATotal }) => {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [setDataCISATotal]);
 
   return (
     <Routes>
