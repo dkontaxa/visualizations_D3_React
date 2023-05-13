@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import OutlinedCard from "./Card";
 import { NavLink } from "react-router-dom";
 
-const Navbar = ({ dataCISATotal }) => {
+const Navbar = () => {
   const [dataNVDTotal, setDataNVDTotal] = useState([]);
 
   useEffect(() => {

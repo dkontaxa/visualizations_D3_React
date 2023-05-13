@@ -4,7 +4,7 @@ import * as d3 from "d3";
 import CISA from "./Pages/CISA";
 import NVD from "./Pages/NVD";
 
-const AppRoutes = () => {
+const AppRoutes = ({ dataCISATotal }) => {
   const [result, setResult] = useState([]);
   const [dataCISATotal, setDataCISATotal] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -36,16 +36,7 @@ const AppRoutes = () => {
 
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <CISA
-            result={result}
-            loading={loading}
-            dataCISATotal={dataCISATotal}
-          />
-        }
-      />
+      <Route path="/" element={<CISA result={result} loading={loading} />} />
       <Route path="/NVD" element={<NVD />} />
     </Routes>
   );
