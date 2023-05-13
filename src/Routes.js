@@ -4,9 +4,8 @@ import * as d3 from "d3";
 import CISA from "./Pages/CISA";
 import NVD from "./Pages/NVD";
 
-const AppRoutes = ({ dataCISATotal }) => {
+const AppRoutes = ({ setDataCISATotal }) => {
   const [result, setResult] = useState([]);
-  const [dataCISATotal, setDataCISATotal] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
