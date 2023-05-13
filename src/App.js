@@ -36,11 +36,10 @@ const App = () => {
         console.error(error);
       });
 
-    fetch("/.netlify/functions/api/nvd")
+    fetch("/.netlify/functions/apiNVD")
       .then((response) => response.json())
       .then((jsonResponse) => {
-        setDataNVDTotal(jsonResponse.totalCount);
-        setResultNVD(jsonResponse.result);
+        setDataNVDTotal(jsonResponse);
       })
       .catch((error) => {
         console.error(error);

@@ -3,19 +3,19 @@ import React, { useState, useEffect } from "react";
 import OutlinedCard from "./Card";
 import { NavLink } from "react-router-dom";
 
-const Navbar = ({ dataCISATotal }) => {
-  const [dataNVDTotal, setDataNVDTotal] = useState([]);
+const Navbar = ({ dataCISATotal, dataNVDTotal }) => {
+  //   const [dataNVDTotal, setDataNVDTotal] = useState([]);
 
-  useEffect(() => {
-    fetch("/.netlify/functions/apiNVD")
-      .then((response) => response.json())
-      .then((jsonResponse) => {
-        setDataNVDTotal(jsonResponse);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  //   useEffect(() => {
+  //     fetch("/.netlify/functions/apiNVD")
+  //       .then((response) => response.json())
+  //       .then((jsonResponse) => {
+  //         setDataNVDTotal(jsonResponse);
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //       });
+  //   }, []);
 
   return (
     <>
