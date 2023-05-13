@@ -9,7 +9,6 @@ const App = () => {
   const [dataCISATotal, setDataCISATotal] = useState([]);
   const [dataNVDTotal, setDataNVDTotal] = useState([]);
   const [resultCISA, setResultCISA] = useState([]);
-  const [resultNVD, setResultNVD] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -56,10 +55,7 @@ const App = () => {
           path="/"
           element={<CISA result={resultCISA} loading={loading} />}
         />
-        <Route
-          path="/NVD"
-          element={<NVD result={resultNVD} loading={loading} />}
-        />
+        <Route path="/NVD" element={<NVD loading={loading} />} />
       </Routes>
     </div>
   );
