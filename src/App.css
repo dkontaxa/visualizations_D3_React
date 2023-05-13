@@ -10,12 +10,6 @@
   width: 40vw;
 }
 
-.flexRow {
-  display: flex;
-  flex-direction: row !important;
-  align-items: center;
-}
-
 .pointer {
   cursor: pointer;
 }
