@@ -47,9 +47,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <header>
-        <Navbar dataCISATotal={dataCISATotal} dataNVDTotal={dataNVDTotal} />
-      </header>
+      <Navbar dataCISATotal={dataCISATotal} dataNVDTotal={dataNVDTotal} />
       <Routes>
         <Route
           path="/"
