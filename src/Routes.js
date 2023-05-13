@@ -6,12 +6,14 @@ import NVD from "./Pages/NVD";
 
 const AppRoutes = () => {
   const [result, setResult] = useState([]);
+  const [dataCISATotal, setDataCISATotal] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/.netlify/functions/api")
       .then((response) => response.json())
       .then((jsonResponse) => {
+        setDataCISATotal(jsonResponse.count);
         const dataJson = jsonResponse.vulnerabilities.map((vulnerability) => ({
           x: vulnerability.cveID.substr(4, 4),
           y: 1,
@@ -34,7 +36,16 @@ const AppRoutes = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<CISA result={result} loading={loading} />} />
+      <Route
+        path="/"
+        element={
+          <CISA
+            result={result}
+            loading={loading}
+            dataCISATotal={dataCISATotal}
+          />
+        }
+      />
       <Route path="/NVD" element={<NVD />} />
     </Routes>
   );
