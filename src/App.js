@@ -51,7 +51,7 @@ const App = () => {
       <Routes>
         <Route
           path="/"
-          element={<CISA result={resultCISA} loading={loading} />}
+          element={<CISA resultCISA={resultCISA} loading={loading} />}
         />
         <Route path="/NVD" element={<NVD loading={loading} />} />
       </Routes>
