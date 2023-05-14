@@ -20,7 +20,7 @@ const Navbar = ({ dataCISATotal, dataNVDTotal }) => {
   //   }, []);
 
   return (
-    <>
+    <header className="flexRow navbar">
       <NavLink to="/">
         <OutlinedCard
           title="CISA "
@@ -43,7 +43,7 @@ const Navbar = ({ dataCISATotal, dataNVDTotal }) => {
           buttonText="Learn More"
         />
       </NavLink>
-    </>
+    </header>
   );
 };
 

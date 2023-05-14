@@ -10,6 +10,19 @@
   width: 40vw;
 }
 
+.flexRow,
+header {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .pointer {
   cursor: pointer;
+}
+
+.navbar {
+  justify-content: space-evenly;
+  margin-top: 20px;
 }
