@@ -4,6 +4,7 @@ import * as d3 from "d3";
 import CISA from "./Pages/CISA";
 import NVD from "./Pages/NVD";
 import Navbar from "./Components/Navbar";
+import "./App.css";
 
 const App = () => {
   const [dataCISATotal, setDataCISATotal] = useState([]);
